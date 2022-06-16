@@ -56,6 +56,10 @@
         <servlet-name>facultyLogout</servlet-name>
         <servlet-class>com.learning.servlets.facultyLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteCourse</servlet-name>
+        <servlet-class>com.learning.servlets.deleteCourse</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>adminLogin</servlet-name>
         <url-pattern>/adminLogin</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>facultyLogout</servlet-name>
         <url-pattern>/facultyLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteCourse</servlet-name>
+        <url-pattern>/deleteCourse</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
