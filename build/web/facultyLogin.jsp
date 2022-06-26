@@ -31,7 +31,7 @@
     <%
             faculty fac = (faculty)session.getAttribute("Faculty");
             if(fac!=null){
-                response.sendRedirect("faculty.jsp");
+                response.sendRedirect("faculty.jsp#f-dashboard");
             }
     %>
     <nav class="navbar navbar-expand-lg navbar-light " style="height: 50px; background-color: white; margin-bottom: 0px;">
@@ -63,7 +63,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" href="index.jsp">Home</a>
-                <a class="nav-link" href="#">Courses</a>
+                <a class="nav-link" href="courses.jsp">Courses</a>
                 <a class="nav-link" href="aboutUs.jsp">About</a>
               </li>
             </ul>

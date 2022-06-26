@@ -60,6 +60,18 @@
         <servlet-name>deleteCourse</servlet-name>
         <servlet-class>com.learning.servlets.deleteCourse</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addModules</servlet-name>
+        <servlet-class>com.learning.servlets.addModules</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addQuestions</servlet-name>
+        <servlet-class>com.learning.servlets.addQuestions</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addProject</servlet-name>
+        <servlet-class>com.learning.servlets.addProject</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>adminLogin</servlet-name>
         <url-pattern>/adminLogin</url-pattern>
@@ -119,6 +131,18 @@
     <servlet-mapping>
         <servlet-name>deleteCourse</servlet-name>
         <url-pattern>/deleteCourse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addModules</servlet-name>
+        <url-pattern>/addModules</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addQuestions</servlet-name>
+        <url-pattern>/addQuestions</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addProject</servlet-name>
+        <url-pattern>/addProject</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

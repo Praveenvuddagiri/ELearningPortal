@@ -9,9 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.file.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -58,13 +55,13 @@ public class studentSignup extends HttpServlet {
             student st = new student(name,phone,email,dob,add,clg,gen,pass,fname);
             
             StudentDao dao = new StudentDao(ConnectionProvider.getConnection());
-            String status = dao.addStudent(st);
+            boolean status = dao.addStudent(st);
             
-            if(status==""){
+            if(status){
                 out.println("done");
             }
             else{
-                out.println(status+"Some sql constraints are been voilated, please check again.\nUser may already exits \nEmail and phone number may be reapeted.");
+                out.println("Some sql constraints are been voilated, please check again.\nUser may already exits \nEmail and phone number may be reapeted.");
             }
         }
     }

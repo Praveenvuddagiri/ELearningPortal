@@ -9,7 +9,7 @@
   <main>
     <head>
         <title>Welcome to E-Learning LMS</title>
-        <link rel = "icon" href = "src/divya-sharma.jpg" type = "image/x-icon">
+        <link rel = "icon" href = "src/icon1.gif" type = "image/x-icon">
         <link rel="stylesheet" type="text/css" href="css/cssfile.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -48,7 +48,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link" id="nav_home" href="#">Home</a>
-                    <a class="nav-link" href="#">Courses</a>
+                    <a class="nav-link" href="courses.jsp">Courses</a>
                     <a class="nav-link" href="aboutUs.jsp">About</a>
                   </li>
                 </ul>

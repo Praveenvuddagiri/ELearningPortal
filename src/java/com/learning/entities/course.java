@@ -10,8 +10,10 @@ public class course {
     private int cat_id;
     private int f_id;
     private int c_mod;
+    private String c_img;
+    private String c_pro;
 
-    public course(String c_name, float c_price, String c_desc, int c_dur, int cat_id, int f_id) {
+    public course(String c_name, float c_price, String c_desc, int c_dur, int cat_id, int f_id,String c_img) {
         this.c_name = c_name;
         this.c_price = c_price;
         this.c_desc = c_desc;
@@ -19,6 +21,23 @@ public class course {
         this.cat_id = cat_id;
         this.f_id = f_id;
 //        this.c_mod = c_mod;
+        this.c_img = c_img;
+    }
+
+    public String getC_img() {
+        return c_img;
+    }
+
+    public String getC_pro() {
+        return c_pro;
+    }
+
+    public void setC_pro(String c_pro) {
+        this.c_pro = c_pro;
+    }
+
+    public void setC_img(String c_img) {
+        this.c_img = c_img;
     }
 
     public course() {

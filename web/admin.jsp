@@ -169,6 +169,7 @@
                     <tr>
                       <th scope="col">Course ID</th>
                       <th scope="col">Course Name</th>
+                      <th scope="col">Faculty Name</th>                      
                       <th scope="col">Price</th>
                       <th scope="col">Duration</th>
                       <th scope="col">Action</th>
@@ -184,10 +185,17 @@
                            Statement stm = con.createStatement();
                            ResultSet rs = stm.executeQuery(query);
                             while(rs.next()){
+                                query = "select f_name from faculty where f_id="+rs.getString("f_id");
+                                Statement stm2 = con.createStatement();
+                               ResultSet rs2 = stm2.executeQuery(query);
+                               String fname="";
+                               while(rs2.next())
+                                fname = rs2.getString("f_name");
                       %>
                     <tr>
                       <td><%=rs.getString("c_id")%></td>
-                      <td><%=rs.getString("c_name")%></td>                      
+                      <td><%=rs.getString("c_name")%></td>
+                      <td><%=fname%></td>                      
                       <td><%=rs.getString("c_price")%></td>
                       <td><%=rs.getString("c_dur")%></td>
                       
@@ -199,7 +207,6 @@
                                 <button type="button" class="btn btn-danger btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">Delete</button>
                             </a>
                         </td>
-                      
                     </tr>
                      <%
                         }
@@ -287,11 +294,20 @@
                            Statement stm = con.createStatement();
                            ResultSet rs = stm.executeQuery(query);
                             while(rs.next()){
+                                query = "select c_name from course where f_id="+rs.getString("f_id");
+                                Statement stm2 = con.createStatement();
+                               ResultSet rs2 = stm2.executeQuery(query);
+                               String cname="";
+                               while(rs2.next()){
+                                    cname += rs2.getString("c_name");
+                                    cname+=", ";
+                               }
+                               cname = cname.substring(0, cname.length() - 2);
                       %>
                     <tr>
                       <td><%=rs.getString("f_id")%></td>
                       <td><%=rs.getString("f_name")%></td>
-                      <td>To be done</td>                      
+                      <td><%=cname%></td>                      
                       <td><%=rs.getString("f_email")%></td>
                       <td>
                           <%String url = "deleteFaculty?id="+rs.getString("f_id");%>   

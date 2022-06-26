@@ -116,6 +116,10 @@
                             $("#loader").hide();
                             if (data.trim() === 'done')
                             {
+                                <% 
+                                    HttpSession s = request.getSession();
+                                    s.removeAttribute("Faculty");
+                                %>
                                 swal("Update successfully..We are going to redirect to admin page")
                                         .then((value) => {
                                             window.location = "admin.jsp#a-faculties"   //to be handled

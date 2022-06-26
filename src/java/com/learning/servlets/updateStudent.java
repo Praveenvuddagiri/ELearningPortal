@@ -9,14 +9,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.file.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 @MultipartConfig
@@ -26,11 +24,21 @@ public class updateStudent extends HttpServlet {
             throws ServletException, IOException {
         try ( PrintWriter out = response.getWriter()) {
             
+            HttpSession ss = request.getSession();
+            student st1 = (student)ss.getAttribute("Student");
+            String path1 = request.getRealPath("/")+"/src/stud-img"+File.separator+st1.getImg();
+            File f = new File(path1);
+            f.delete();
+                        
             String name = request.getParameter("name");
             String dob = request.getParameter("dob");
             String add = request.getParameter("add");
             String clg = request.getParameter("clg");
             String gen = request.getParameter("gender");
+            String pass = request.getParameter("pass");            
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phno");
+
             
             Part part = request.getPart("img");
             String fname = part.getSubmittedFileName();
@@ -44,16 +52,18 @@ public class updateStudent extends HttpServlet {
                 fos.write(data);
             }
             
-            student st = new student(name,"","",dob,add,clg,gen,"",fname);
-            
+            student st = new student(name,phone,email,dob,add,clg,gen,pass,fname);
+            st.setId(Integer.parseInt(request.getParameter("sid")));
             StudentDao dao = new StudentDao(ConnectionProvider.getConnection());
-            boolean status = dao.updateStudent(st);
+            String status = dao.updateStudent(st);
             
-            if(status){
+            if(status.equals("")){
                 out.println("done");
+                HttpSession s = request.getSession();
+                s.setAttribute("Student", st);
             }
             else{
-                out.println("Some sql constraints are been voilated, please check again.\nUser may already exits \nEmail and phone number may be reapeted.");
+                out.println(status+"Some sql constraints are been voilated, please check again.\nUser may already exits \nEmail and phone number may be reapeted.");
             }
         }
     }

@@ -70,7 +70,7 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <a class="nav-link" href="index.jsp">Home</a>
-                  <a class="nav-link" href="#">Courses</a>                  
+                  <a class="nav-link" href="courses.jsp">Courses</a>                  
                   <a class="nav-link" href="aboutUs.jsp" id="nav_home">About Us</a>
 
                 </li>

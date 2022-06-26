@@ -48,7 +48,7 @@ public class facultyLogin extends HttpServlet {
             else{
                 HttpSession s = request.getSession();
                 s.setAttribute("Faculty", fac);
-                response.sendRedirect("faculty.jsp");
+                response.sendRedirect("faculty.jsp#f-dashboard");
             }
             out.println("</body>");
             out.println("</html>");

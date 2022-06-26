@@ -19,6 +19,10 @@ public class adminLogout extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
             s.removeAttribute("Admin");
+            s.removeAttribute("Faculty");            
+            s.removeAttribute("Student");
+
+
             response.sendRedirect("index.jsp");
         }
     }

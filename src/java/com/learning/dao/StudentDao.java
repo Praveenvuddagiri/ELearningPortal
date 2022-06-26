@@ -12,8 +12,8 @@ public class StudentDao {
     public StudentDao(Connection con) {
         this.con = con;
     }
-    public String addStudent(student st){
-        String f = "";
+    public boolean addStudent(student st){
+        boolean f = false;
         try {
             //user -->database
             String query = "insert into student values (?,?,?,?,?,?,?,?,?,?)";
@@ -29,10 +29,9 @@ public class StudentDao {
             pstmt.setString(7,st.getPass());            
             pstmt.setString(8,st.getImg());
             pstmt.executeUpdate();
-//            f = true;
+            f = true;
         } catch (Exception e) {
             e.printStackTrace();
-            return String.valueOf(e);
         }
         return f;
     }
@@ -104,26 +103,26 @@ public class StudentDao {
         }
         return st;
     }
-    public boolean updateStudent(student st){
+    public String updateStudent(student st){
         boolean f = false;
         try {
             //user -->database
 
-            String query = "update student set name=?,dob=?,address=?,college=?,gender=?,img=? where id=?;";
+            String query = "update student set name=?,dob=?,address=?,college=?,gender=?,password=?,img=? where id=?";
             PreparedStatement pstmt = this.con.prepareStatement(query);
             pstmt.setString(1,st.getName());            
             pstmt.setString(2,st.getDob());
             pstmt.setString(3,st.getAdd());
             pstmt.setString(4,st.getClg());
             pstmt.setString(5,st.getGen());
-            pstmt.setString(6,st.getImg());
-            pstmt.setString(7,String.valueOf(st.getId()));
-
+            pstmt.setString(6,st.getPass());
+            pstmt.setString(7,st.getImg());
+            pstmt.setString(8,String.valueOf(st.getId()));
             pstmt.executeUpdate();
             f = true;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            return String.valueOf(e);
         }
-        return f;
+        return "";
     }
 }

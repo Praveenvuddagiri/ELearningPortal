@@ -4,6 +4,7 @@
     Author     : praveen vuddagiri
 --%>
 
+<%@page import="com.learning.entities.student"%>
 <%@page import="com.learning.entities.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,6 +31,13 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+    
+    <%
+            student st = (student)session.getAttribute("Student");
+            if(st!=null){
+                response.sendRedirect("student.jsp#s-dashboard");
+            }
+    %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 60px;">
         <div class="container">
           <a class="navbar-brand me-2" href="homepage.jsp" id="logo">
@@ -59,7 +67,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" href="index.jsp">Home</a>
-                <a class="nav-link" href="#">Courses</a>
+                <a class="nav-link" href="courses.jsp">Courses</a>
                 <a class="nav-link" href="aboutUs.jsp">About</a>
               </li>
             </ul>

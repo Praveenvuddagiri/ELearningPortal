@@ -8,13 +8,17 @@ package com.learning.servlets;
 import com.learning.dao.CourseDao;
 import com.learning.entities.course;
 import com.learning.helper.ConnectionProvider;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 @MultipartConfig
 public class addCourseAdmin extends HttpServlet {
@@ -30,8 +34,18 @@ public class addCourseAdmin extends HttpServlet {
             int cdur = Integer.parseInt(request.getParameter("cdur"));
             int cat = Integer.parseInt(request.getParameter("cat"));
             int fac = Integer.parseInt(request.getParameter("fac"));
-            
-            course c = new course(cname,cprice,cdesc,cdur,cat,fac);
+            Part part = request.getPart("cimg");
+                String fname = part.getSubmittedFileName();
+
+                InputStream in = part.getInputStream();
+                byte[] data = new byte[in.available()];
+                in.read(data);
+                String path = request.getRealPath("/") + "/src/course-img" + File.separator + fname;
+
+                try ( FileOutputStream fos = new FileOutputStream(path)) {
+                    fos.write(data);
+                }
+            course c = new course(cname,cprice,cdesc,cdur,cat,fac,fname);
             
             CourseDao dao = new CourseDao(ConnectionProvider.getConnection());
             boolean status = dao.addCourse(c);

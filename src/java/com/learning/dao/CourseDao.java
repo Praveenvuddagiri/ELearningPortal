@@ -15,7 +15,7 @@ public class CourseDao {
         boolean f = false;
         try {
             //user -->database
-            String query = "insert into course values (?,?,?,?,?,?,?,?)";
+            String query = "insert into course values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = this.con.prepareStatement(query);
             pstmt.setString(1,"0");            
             pstmt.setString(2,co.getC_name());
@@ -24,7 +24,10 @@ public class CourseDao {
             pstmt.setString(5,String.valueOf(co.getC_dur()));
             pstmt.setString(6,String.valueOf(co.getCat_id()));
             pstmt.setString(7,String.valueOf(co.getF_id()));            
-            pstmt.setString(8,"0");
+            pstmt.setString(8,"0");            
+            pstmt.setString(9,co.getC_img());
+            pstmt.setString(10,"0");            
+
 
             pstmt.executeUpdate();
             f = true;
