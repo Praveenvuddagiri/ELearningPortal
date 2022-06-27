@@ -34,7 +34,7 @@
         </header>
         <div class="l-navbar" id="nav-bar" >
             <nav class="nav">
-                <div> <p href="" class="nav_logo"> <i class='bx bx-user nav_logo-icon'></i> <span class="nav_logo-name">E-Learning</span> </p>
+                <div> <a href="index.jsp" class="nav_logo"> <i class='bx bx-user nav_logo-icon'></i> <span class="nav_logo-name">E-Learning</span> </a>
                     <div class="nav_list"> 
                     <a href="#s-dashboard" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name" id="dashboard">Dashboard</span> </a> 
                     <a href="#s-courses" class="nav_link"> <i class='bx bx-book-content nav_icon'></i> <span class="nav_name" id="allcourses">Courses</span> </a> 
@@ -59,6 +59,7 @@
                               <div class="d-flex justify-content-center mb-2">
                                   <a href="updateStudent.jsp"><button type="button" class="btn btn-outline-primary ms-1">Edit Profile</button></a>
                               </div>
+                              <div class="alert alert-danger"> Image has to be re-uploaded if you update your profile. </div>
                             </div>
                           </div>
                           <div class="card mb-4 mb-lg-0 shadow bg-white rounded">
@@ -197,8 +198,8 @@
                         </div>
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-file text-primary me-2"></i>4 Modules</small>
-                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>300 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-arrow-right text-primary me-2"></i>Read More</small>
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>300 Months</small>
+                            <small class="flex-fill text-center py-2 btn-primary text-white"><a href="enrolled-course-view.jsp?c_id=" style="text-decoration: none; color: white;"><i class="fa fa-arrow-right text-white me-2"></i>Access Course</a></small>
                         </div>
                     </div>
                 </div>

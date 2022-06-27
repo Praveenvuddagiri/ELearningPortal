@@ -425,7 +425,7 @@
                             <td>Java</td>
                             <td><a href="#" target="_blank">snakeGame.pdf</a></td>
                             <td><button type="button" class="btn btn-success btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">&check; Issue Certificate</button>
-                                <button type="button" class="btn btn-danger btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal" data-bs-target="#moduleReport">! Issue Report</button>
+                                <!--<button type="button" class="btn btn-danger btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal" data-bs-target="#moduleReport">! Issue Report</button>-->
                             </td>
                         </tr>
                     </tbody>

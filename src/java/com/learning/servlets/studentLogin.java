@@ -47,7 +47,7 @@ public class studentLogin extends HttpServlet {
             else{
                 HttpSession s = request.getSession();
                 s.setAttribute("Student", st);
-                response.sendRedirect("student.jsp#s-dashboard");
+                response.sendRedirect("index.jsp");
             }
             
             out.println("</body>");

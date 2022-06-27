@@ -31,6 +31,7 @@ public class CourseDao {
 
             pstmt.executeUpdate();
             f = true;
+            pstmt.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,6 +46,8 @@ public class CourseDao {
             Statement st = con.createStatement();
             st.executeQuery(q);
             f=true;
+            con.close();
+            st.close();
         }catch(Exception e){
             System.out.println(e);
         }

@@ -4,12 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/studentLog.jsp</file>
-            <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/faculty.jsp</file>
             <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/facultyLogin.jsp</file>
+            <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/student.jsp</file>
             <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/aboutUs.jsp</file>
             <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/courses.jsp</file>
-            <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/addCourseAdminForm.jsp</file>
+            <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/enrolled-course-view.jsp</file>
+            <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/course-access.jsp</file>
+            <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/project-submit.jsp</file>
             <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/studentReg.jsp</file>
+            <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/exam-des.jsp</file>
             <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/adminLogin.jsp</file>
             <file>file:/C:/Users/praveen%20vuddagiri/Documents/NetBeansProjects/E-learning/web/index.jsp</file>
         </group>

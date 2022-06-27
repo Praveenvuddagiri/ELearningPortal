@@ -253,7 +253,9 @@
                       <td><%=rs.getString("name")%></td>                      
                       <td><%=rs.getString("phone")%></td>
                       <td><%=rs.getString("email")%></td>
-                      <td><button type="button" class="btn btn-primary btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">More</button></td>
+                      <td>
+                          <a href="studentDetails.jsp?s_id=<%=rs.getString("id")%>">
+                          <button type="button" class="btn btn-primary btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">More</button></td>
                     </tr>
                     
                     <%

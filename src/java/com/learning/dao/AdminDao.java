@@ -24,6 +24,8 @@ public class AdminDao {
                 ad.setEmail(rs.getString(1));
                 ad.setPassword(rs.getString(2));
             }
+            rs.close();
+            pstmt.close();
         }catch(Exception e){
             System.out.println(e);
         }

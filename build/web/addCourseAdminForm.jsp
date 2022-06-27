@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="col-md-6 mt-md-0 mt-3" >
-                            <label>Faculty</label>
+                            <label>Course Image</label>
                             <input type="file" name="cimg" class="form-control" required>
                         </div>
                     </div>

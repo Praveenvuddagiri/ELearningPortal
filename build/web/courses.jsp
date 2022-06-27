@@ -4,6 +4,7 @@
     Author     : praveen vuddagiri
 --%>
 
+<%@page import="com.learning.entities.student"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.learning.helper.ConnectionProvider"%>
 <%@page import="java.sql.Statement"%>
@@ -13,7 +14,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="UTF-8">
-        <title>Registration</title>
+        <title>Courses Page</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/cssfile.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
@@ -23,7 +24,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <%
+
+            student st = (student) session.getAttribute("Student");
+
+        %>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%;">
             <div class="container">
                 <a class="navbar-brand me-2" href="index.jsp" id="logo">
                     <img
@@ -56,49 +62,97 @@
                             <a class="nav-link" href="aboutUs.jsp">About Us</a>
                         </li>
                     </ul>
+                    <%    if (st == null) {
+                    %>
+                    <div class="d-flex align-items-right" id="login-signup">
+                        <a href="studentLog.jsp">
+                            <button type="button" class="btn btn-primary me-3">
+                                Student Login
+                            </button>
+                        </a>
+                        <a href="studentReg.jsp">
+
+                            <button type="button" class="btn btn-success me-3">
+                                Register
+                            </button>
+                        </a>
+                    </div>
+                    <%
+                    } else {
+                    %>
+
+                    <div class="d-flex align-items-right" id="login-signup">
+                        <a href="student.jsp#s-dashboard">
+                            <button type="button" class="btn btn-primary me-3">
+                                Dashboard
+                            </button>
+                        </a>
+                    </div>
+                    <%}%>
                 </div>
+                
         </nav>
 
 
         <!-- Courses Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                     <h6 class="section-title bg-white text-center text-primary px-3">e-learning</h6>
                     <h1 class="mb-5">Courses</h1>
                     <label>Select Category  </label>
-                            <select id="sub" required name="cat">
-                                <option value="" >All Category </option>
-                                <%
-                                    try {
+                    <select id="sub" required name="cat" onchange="loadCategory()" value="<%=request.getParameter("cat_id")%>">
+                        <option value="-1" <%if (Integer.parseInt(request.getParameter("cat_id")) == -1 || request.getParameter("cat_id") == null) {%>selected<%}%> >All Category </option>
+                        <%
+                            try {
+                                Connection con = ConnectionProvider.getConnection();
+                                String query = "select * from category";
+                                Statement stm = con.createStatement();
+                                ResultSet rs = stm.executeQuery(query);
+                                while (rs.next()) {
+                        %>
+                        <option value='<%=rs.getString("cat_id")%>' <%if (Integer.parseInt(request.getParameter("cat_id")) == rs.getInt("cat_id")) {%>selected<%}%>><%=rs.getString("cat_name")%></option>
+                        <%
 
-                                        Connection con = ConnectionProvider.getConnection();
-                                        String query = "select * from category";
-                                        Statement stm = con.createStatement();
-                                        ResultSet rs = stm.executeQuery(query);
-                                        while (rs.next()) {
-                                %>
-                                <option value='<%=rs.getString("cat_id")%>'  ><%=rs.getString("cat_name")%></option>
-                                <%
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                        out.println(e);
-                                    }
-                                %>
+                                }
+                                rs.close();
+                                stm.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                out.println(e);
+                            }
 
-                            </select>
+                        %>
+
+                    </select>
                 </div>
-                <div class="row g-4 justify-content-center">
-                    <%
-                        Connection con = ConnectionProvider.getConnection();
-                        String query = "select * from course";
-                        Statement stm = con.createStatement();
-                        ResultSet rs = stm.executeQuery(query);
-                        while (rs.next()) {
+                <script >
+
+                    function loadCategory() {
+                        var cat_id = document.getElementById("sub").value;
+                        console.log(cat_id);
+                        window.location.replace("courses.jsp?cat_id=" + cat_id);
+                    }
+                </script>
+                <div class="row g-4 justify-content-center mt-5">
+                    <%   
+                        Connection con;
+                        Statement stm;
+                        ResultSet rs;
+                        try {
+                            con = ConnectionProvider.getConnection();
+                            String query = "";
+                            if (Integer.parseInt(request.getParameter("cat_id")) == -1 || request.getParameter("cat_id") == null) {
+                                query = "select * from course ";
+                            } else {
+                                query = "select * from course where cat_id=" + request.getParameter("cat_id");
+                            }
+                            stm = con.createStatement();
+                            rs = stm.executeQuery(query);
+                            while (rs.next()) {
 
                     %>
-                    
+
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="course-item bg-light">
                             <div class="position-relative overflow-hidden">
@@ -111,13 +165,20 @@
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-file text-primary me-2"></i><%=rs.getString("c_mod")%> Modules</small>
                                 <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i><%= rs.getString("c_dur")%> Months</small>
-                                <small class="flex-fill text-center py-2 bg-primary text-white"><a href="itemdetails.jsp&c_id=<%= rs.getString("c_id") %>" style="text-decoration: none; color: white;"><i class="fa fa-arrow-right text-white me-2"></i>Read More</a></small>
+                                <small class="flex-fill text-center py-2 btn-danger text-white"><a href="coursedes.jsp?c_id=<%= rs.getString("c_id")%>" style="text-decoration: none; color: white;"><i class="fa fa-arrow-right text-white me-2"></i>Join Now</a></small>
                             </div>
                         </div>
                     </div>
 
                     <%
+
+                            }
+                            rs.close();
+                            stm.close();
+                        } catch (Exception e) {
+                            out.println(e);
                         }
+
                     %>
                 </div>
             </div>

@@ -18,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand me-2" href="homepage.jsp" id="logo">
+          <a class="navbar-brand me-2" href="index.jsp" id="logo">
             <img
               src="src/icon1.gif"
               alt="E-Learning Logo"
@@ -45,7 +45,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link" href="index.jsp">Home</a>
-                <a class="nav-link" href="courses.jsp">Courses</a>
+                <a class="nav-link" href="courses.jsp?cat_id=-1">Courses</a>
                 <a class="nav-link" href="aboutUs.jsp">About</a>
               </li>
             </ul>
