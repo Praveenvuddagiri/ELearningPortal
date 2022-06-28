@@ -199,7 +199,7 @@
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-file text-primary me-2"></i>4 Modules</small>
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>300 Months</small>
-                            <small class="flex-fill text-center py-2 btn-primary text-white"><a href="enrolled-course-view.jsp?c_id=" style="text-decoration: none; color: white;"><i class="fa fa-arrow-right text-white me-2"></i>Access Course</a></small>
+                            <small class="flex-fill text-center py-2 btn-primary text-white"><a href="enrolled-course-view.jsp?c_id=41" style="text-decoration: none; color: white;"><i class="fa fa-arrow-right text-white me-2"></i>Access Course</a></small>
                         </div>
                     </div>
                 </div>
