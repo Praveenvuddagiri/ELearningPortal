@@ -48,7 +48,7 @@ public class addQuestions extends HttpServlet {
                 QuestionDao dao = new QuestionDao(ConnectionProvider.getConnection());
 
                 boolean status = dao.addQuestion(q);
-                out.println(status);
+                System.out.println(status);
             }
             response.sendRedirect("faculty.jsp#f-courses");
 

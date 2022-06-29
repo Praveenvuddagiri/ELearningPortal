@@ -33,6 +33,20 @@ public class questions {
         this.ans = ans;
     }
 
+    public String getAnswerAccToAns(String ans){
+        if(ans.equals("A")){
+            return getA();
+        }
+        else if(ans.equals("B")){
+            return getB();
+        }
+        else if(ans.equals("C")){
+            return getC();
+        }
+        else{
+            return getD();
+        }
+    }
     public int getQ_id() {
         return q_id;
     }

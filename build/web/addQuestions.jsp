@@ -42,7 +42,7 @@
                         String ans = "ans" + (i + 1);
                 %>
             <div class="wrapper rounded bg-white">
-                <div class="h3"><center>Enter Question Number - <%=(i+1)%></center></div>
+                <div class="h3"><center>Enter Question Number - <%=(i + 1)%></center></div>
                 <div class="form">
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
@@ -51,13 +51,13 @@
                         </div>
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Question ID</label>
-                            <input type="text" class="form-control" name="<%=qId%>"  value="<%=(i+1)%>" readonly>
+                            <input type="text" class="form-control" name="<%=qId%>"  value="<%=(i + 1)%>" readonly>
                         </div>
 
                     </div>
 
                     <div class="col-md-12 mt-md-0 mt-3">
-                        <label>Question <%=(i+1)%></label>
+                        <label>Question <%=(i + 1)%></label>
                         <input type="text" name="<%=que%>" class="form-control" placeholder="Enter the full question">
                     </div>
                     <div class="col-md-12 mt-md-0 mt-2">
@@ -75,11 +75,29 @@
                         <label>Option D</label>
                         <input type="text" name="<%=d%>" class="form-control" placeholder="Enter option D">
                     </div>
-                    <div class="col-md-12 mt-md-0 mt-3">
+                    <div class="col-md-12 mt-md-0 mt-3 ">
                         <label>Answer</label>
-                        <input type="text" name="<%=ans%>" class="form-control" placeholder="Enter the correct option A or B or C or D">
+                        <div class="d-flex align-items-center mt-2">
+                        <label class="option col-md-3">
+                            <input type="radio" name="<%=ans%>" value="A"  >A
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="option col-md-3">
+                            <input type="radio" name="<%=ans%>" value="B" >B
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="option col-md-3">
+                            <input type="radio" name="<%=ans%>" value="C" >C
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="option col-md-3">
+                            <input type="radio" name="<%=ans%>" value="D" >D
+                            <span class="checkmark"></span>
+                        </label>
+                        </div>
+                        <!--<input type="text" name="<%=ans%>" class="form-control" placeholder="Enter the correct option A or B or C or D">-->
                     </div>
-                   
+
                 </div>
             </div>
             <%                }

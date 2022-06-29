@@ -31,8 +31,8 @@
 
         <%
             int nom = 0;
-            int i = 0;
-            
+            int i = 0, j = 0;
+
             try {
 
                 Connection con = ConnectionProvider.getConnection();
@@ -42,12 +42,12 @@
                 while (rs.next()) {
                     nom = rs.getInt("c_mod");
                 }
-                } catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             modules md[] = new modules[nom];
             try {
-                
+
                 String query = "select * from modules where c_id = " + request.getParameter("c_id");
                 Connection con = ConnectionProvider.getConnection();
                 Statement stm = con.createStatement();
@@ -87,7 +87,7 @@
         <%
             if (nom == 1) {
         %>
-        
+
         <div style="height: 100vh;" id="c-one">
             <div style=" height: 100px;"></div>
             <div class="row" style="margin: 0% 8% 3% 8%;">
@@ -95,86 +95,123 @@
                     <div style="padding-top: 20px; font-size: 22px;">Module 1 : </div>
                     <hr>
                     <div class="card-body">
-                        <h5 class="card-title"><%= md[0].getMod_title()  %></h5>
+                        <h5 class="card-title"><%= md[0].getMod_title()%></h5>
                         <p class="card-text">Click below to download the module notes.</p>
-                        <a href="src/modules-notes/<%= md[0].getMod_notes() %>" target="_blank" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="src/modules-notes/<%= md[0].getMod_notes()%>" target="_blank" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
                     </div>
                 </div>
 
                 <div class="card shadow" id="secondcard" style="margin-left: 50px;">
-                    <iframe width="820" height="413" src="https://www.youtube.com/embed/<%= md[0].getMod_link() %>"
+                    <iframe width="820" height="413" src="https://www.youtube.com/embed/<%= md[0].getMod_link()%>"
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen style="margin-top: 12px; border-radius: 3px;"></iframe>
+                    <p class="text-center" style="margin-top: 12px;">Course Video</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <%
+        } else if (j == 0) {
+
+        %>
+        <div style="height: 100vh;" id="c<%=j%>">
+            <div style=" height: 100px;"></div>
+            <div class="row" style="margin: 0% 8% 3% 8%;">
+                <div class="card text-center shadow" id="firstcard">
+                    <div style="padding-top: 20px; font-size: 22px;">Module <%=(j+1)%> : </div>
+                    <hr>
+                    <div class="card-body">
+                        <h5 class="card-title"> <%= md[j].getMod_title() %> </h5>
+                        <p class="card-text">Click below to download the module notes.</p>
+                        <a href="src/modules-notes/<%= md[j].getMod_notes() %>" target="_blank" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
+                    </div>
+                </div>
+
+                <div class="card shadow" id="secondcard" style="margin-left: 50px;">
+                    <iframe width="820" height="413" src="https://www.youtube.com/embed/<%= md[j].getMod_link() %>"
                              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen style="margin-top: 12px; border-radius: 3px;"></iframe>
                     <p class="text-center" style="margin-top: 12px;">Course Video</p>
                 </div>
             </div>
-            
+            <div class="text-center">
+                <button type="button" class="btn btn-primary btn-rounded"
+                        style="border-radius: 25px; margin-right: 40px;" disabled><i class="fa-solid fa-circle-arrow-up"></i>
+                    Previous</button>
+                <a href="#c1"><button type="button" class="btn btn-success btn-rounded" style="border-radius: 25px;"><i
+                            class="fa-solid fa-circle-arrow-down"></i> Next</button></a>
+            </div>
         </div>
-        
-        
-        <%
-                    }
+        <%            }
+            for (j = 1; j < nom - 1; j++) {
         %>
-        <div style="height: 100vh;" id="c-one">
+
+        <div style="height: 100vh;" id="c<%=j%>">
             <div style=" height: 100px;"></div>
             <div class="row" style="margin: 0% 8% 3% 8%;">
                 <div class="card text-center shadow" id="firstcard">
-                    <div style="padding-top: 20px; font-size: 22px;">Module 1 : Introduction</div>
+                    <div style="padding-top: 20px; font-size: 22px;">Module <%=(j+1)%> : </div>
                     <hr>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title"> <%= md[j].getMod_title() %> </h5>
                         <p class="card-text">Click below to download the module notes.</p>
-                        <a href="#" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="src/modules-notes/<%= md[j].getMod_notes() %>" target="_blank" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
                     </div>
                 </div>
 
                 <div class="card shadow" id="secondcard" style="margin-left: 50px;">
-                    <iframe width="820" height="413" src="https://www.youtube.com/embed/sY-s7O0FiYE"
-                            title="Introduction to Pointers | C Language Tutorial" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    <iframe width="820" height="413" src="https://www.youtube.com/embed/<%= md[j].getMod_link() %>"
+                             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen style="margin-top: 12px; border-radius: 3px;"></iframe>
                     <p class="text-center" style="margin-top: 12px;">Course Video</p>
                 </div>
             </div>
             <div class="text-center">
-                <a href=""><button type="button" class="btn btn-primary btn-rounded"
-                                   style="border-radius: 25px; margin-right: 40px;"><i class="fa-solid fa-circle-arrow-up"></i>
+                <a href="#c<%=(j - 1)%>"><button type="button" class="btn btn-primary btn-rounded"
+                                                 style="border-radius: 25px; margin-right: 40px;"><i class="fa-solid fa-circle-arrow-up"></i>
                         Previous</button></a>
-                <a href="#c-two"><button type="button" class="btn btn-success btn-rounded" style="border-radius: 25px;"><i
+                <a href="#c<%=(j + 1)%>"><button type="button" class="btn btn-success btn-rounded" style="border-radius: 25px; "><i
                             class="fa-solid fa-circle-arrow-down"></i> Next</button></a>
             </div>
         </div>
 
-        <div style="height: 100vh;" id="c-two">
+        <%}
+            if (j == (nom - 1)) {%>
+        <div style="height: 100vh;" id="c<%=j%>">
             <div style=" height: 100px;"></div>
             <div class="row" style="margin: 0% 8% 3% 8%;">
                 <div class="card text-center shadow" id="firstcard">
-                    <div style="padding-top: 20px; font-size: 22px;">Module 2 : Data Type</div>
+                    <div style="padding-top: 20px; font-size: 22px;">Module <%=(j+1)%> : </div>
                     <hr>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title"> <%= md[j].getMod_title() %> </h5>
                         <p class="card-text">Click below to download the module notes.</p>
-                        <a href="#" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="src/modules-notes/<%= md[j].getMod_notes() %>" target="_blank" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>
                     </div>
                 </div>
 
                 <div class="card shadow" id="secondcard" style="margin-left: 50px;">
-                    <iframe width="820" height="413" src="https://www.youtube.com/embed/cnT1oW5_ePM"
-                            title="Introduction to Pointers | C Language Tutorial" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    <iframe width="820" height="413" src="https://www.youtube.com/embed/<%= md[j].getMod_link() %>"
+                             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen style="margin-top: 12px; border-radius: 3px;"></iframe>
                     <p class="text-center" style="margin-top: 12px;">Course Video</p>
                 </div>
             </div>
             <div class="text-center">
-                <a href="#c-one"><button type="button" class="btn btn-primary btn-rounded"
-                                         style="border-radius: 25px; margin-right: 40px;"><i class="fa-solid fa-circle-arrow-up"></i>
+                <a href="#c<%=(j - 1)%>"><button type="button" class="btn btn-primary btn-rounded"
+                                                 style="border-radius: 25px; margin-right: 40px;"><i class="fa-solid fa-circle-arrow-up"></i>
                         Previous</button></a>
-                <a href=""><button type="button" class="btn btn-success btn-rounded" style="border-radius: 25px; "><i
-                            class="fa-solid fa-circle-arrow-down"></i> Next</button></a>
+                <button type="button" disabled class="btn btn-success btn-rounded" style="border-radius: 25px; "><i
+                        class="fa-solid fa-circle-arrow-down"></i> Next</button>
             </div>
         </div>
-        <%}%>
+
+        <%
+                }
+
+            }%>
     </body>
 
     <style>

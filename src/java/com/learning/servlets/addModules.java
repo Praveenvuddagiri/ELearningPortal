@@ -58,7 +58,11 @@ public class addModules extends HttpServlet {
                     }
                 }
                 for (int j = count; j < temp.length(); j++) {
+                    if(temp.charAt(j) == '&'){
+                        break;
+                    }
                     modLink += temp.charAt(j);
+                    
                 }
 
                 Part part = request.getPart("modNotes" + (i + 1));

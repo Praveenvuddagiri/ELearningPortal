@@ -42,7 +42,7 @@
                     <p class="card-text" style="padding-bottom: 2%;">Lorem ipsum dolor sit amet consectetur adipisicing
                         elit. Delectus accusamus eos vel, dolore facilis sunt? Adipisci rem facere error quis, rerum,
                         atque provident distinctio omnis non suscipit aperiam molestias exercitationem.</p>
-                    <a href="#" class="btn btn-success" style="margin-bottom: 3%;"></i><i
+                    <a href="examMCQ.jsp?c_id=<%=request.getParameter("c_id")%>" class="btn btn-success" style="margin-bottom: 3%;"></i><i
                             class="fa-solid fa-pen-to-square"></i> Start Exam</a>
                 </form>
             </div>

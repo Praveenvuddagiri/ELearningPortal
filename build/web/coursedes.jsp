@@ -29,6 +29,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
               integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script><!-- comment -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
@@ -37,9 +39,10 @@
         <%
 
             student st = (student) session.getAttribute("Student");
-
+            
         %>
-
+        
+        
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%;">
             <div class="container">
                 <a class="navbar-brand me-2" href="index.jsp" id="logo">
@@ -149,13 +152,33 @@
                     %>
                     <button class="button2" disabled> Enroll Now </button>
                     <%
-                    } else {%>
-                    <a href="purchaseCourse?c_id=<%=rs.getString("c_id")%>" > <button class="button2" > Enroll Now </button></a>
+                    } else {
 
-                    <%}%>
+                        con = ConnectionProvider.getConnection();
+                        String qur = "select * from std_progress where c_id=" + request.getParameter("c_id") + " and s_id=" + st.getId();
+
+                        stm = con.createStatement();
+                        ResultSet rs3 = stm.executeQuery(qur);
+                        int c_id = 0;
+                        while (rs3.next()) {
+                            c_id = rs3.getInt("c_id");
+                        }
+                        if (c_id == Integer.parseInt(request.getParameter("c_id"))) {
+                    %>
+                    <button class="button2" >Enrolled</button>
+
+                    <%
+                    } else {
+                    %>
+                    <a href="purchaseCourse?c_id=<%=rs.getString("c_id")%>" > <button class="button2" > Enroll Now </button></a>
+                    <%}
+                        }
+                    %>
                 </div>
             </div>
         </div>
+
+
         <%                }
                 rs.close();
                 stm.close();
@@ -170,6 +193,9 @@
         <div class="alert alert-danger">Student should be logged in for enrolling into the course.</div>
         <%
             }%>
+
+
+
         <section class="main-content">
             <div class="container">
                 <h1 class="text-center text-uppercase">How will your training work?</h1>

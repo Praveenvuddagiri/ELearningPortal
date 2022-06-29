@@ -105,7 +105,7 @@
                             <div class="back">
                                 <div class="inner">
                                     <p>From this page you can give exam and prove your understanding level of this course. Based on performance your certificate will be issued.</p>
-                                    <a href="exam-des.jsp?c_id=<%=request.getParameter("c_id")%>"><button type="button" class="btn btn-primary">Start
+                                    <a href="examMCQ.jsp?c_id=<%=request.getParameter("c_id")%>"><button type="button" class="btn btn-primary">Start
                                             Exam</button></a>
                                 </div>
                             </div>

@@ -81,7 +81,7 @@ public class StudentDao {
         student st=null;
         
         try{
-            String query = "select * from student where id="+id+";";
+            String query = "select * from student where id="+id;
             Statement stm = con.createStatement();
 
             ResultSet rs = stm.executeQuery(query);

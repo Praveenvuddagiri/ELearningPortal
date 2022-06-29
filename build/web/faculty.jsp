@@ -4,6 +4,10 @@
     Author     : praveen vuddagiri
 --%>
 
+<%@page import="com.learning.entities.student"%>
+<%@page import="com.learning.dao.StudentDao"%>
+<%@page import="com.learning.entities.course"%>
+<%@page import="com.learning.dao.CourseDao"%>
 <%@page import="org.apache.jasper.JasperException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -29,18 +33,18 @@
     <body id="body-pd" style="overflow-y: hidden;" >
 
         <%
-            
-            faculty fac = (faculty)session.getAttribute("Faculty");
-            if(fac==null){
+
+            faculty fac = (faculty) session.getAttribute("Faculty");
+            if (fac == null) {
                 response.sendRedirect("facultyLogin.jsp");
                 fac = new faculty();
             }
-           
+
         %>
 
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+            <!--<div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>-->
         </header>
         <div class="l-navbar" id="nav-bar" >
             <nav class="nav">
@@ -85,7 +89,7 @@
                                             try {
 
                                                 Connection con = ConnectionProvider.getConnection();
-                                                String query = "select * from faculty";
+                                                String query = "select * from faculty where f_id=" + fac.getFacid();
                                                 Statement stm = con.createStatement();
                                                 ResultSet rs = stm.executeQuery(query);
                                                 while (rs.next()) {
@@ -260,7 +264,7 @@
                                     while (rs2.next()) {
                                         count = rs2.getInt(1);
                                     }
-                                    
+
                                     query = "select count('q_id') from questions where c_id=" + rs.getString("c_id");
                                     stm2 = con.createStatement();
                                     rs2 = stm2.executeQuery(query);
@@ -268,7 +272,7 @@
                                     while (rs2.next()) {
                                         count2 = rs2.getInt(1);
                                     }
-                                    
+
                                     query = "select c_pro from course where c_id=" + rs.getString("c_id");
                                     stm2 = con.createStatement();
                                     rs2 = stm2.executeQuery(query);
@@ -276,8 +280,8 @@
                                     while (rs2.next()) {
                                         project = rs2.getString(1);
                                     }
-                                    
-                                    String status = (count > 0 && count2>0 && !project.equals("0")) ? "Completed" : "Incomplete";
+
+                                    String status = (count > 0 && count2 > 0 && !project.equals("0")) ? "Completed" : "Incomplete";
                         %>
                         <tr>
                             <td><%= rs.getString("c_id")%></td>
@@ -285,32 +289,32 @@
                             <td><%= rs.getString("c_dur")%> Months</td>
                             <td><%= status%></td> <!--for Completed :: action is not required!-->
                             <td>
-                                <%  String url = "addModuleGetCount.jsp?cid=" + rs.getString("c_id"); 
-                                    if(count>0){
+                                <%  String url = "addModuleGetCount.jsp?cid=" + rs.getString("c_id");
+                                    if (count > 0) {
                                         url = "faculty.jsp#f-courses";
                                     }
-                                
+
                                 %>
                                 <a  href="<%=url%>">
-                                <button  type="button" class="btn btn-primary btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal"  <%if (count > 0) {%> disabled <%}%> >+ Add Modules</button> 
+                                    <button  type="button" class="btn btn-primary btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal"  <%if (count > 0) {%> disabled <%}%> >+ Add Modules</button> 
                                 </a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                
-                            <%  String url2 = "addQuestionGetCount.jsp?cid=" + rs.getString("c_id"); 
-                                    if(count2>0){
+
+                                <%  String url2 = "addQuestionGetCount.jsp?cid=" + rs.getString("c_id");
+                                    if (count2 > 0) {
                                         url2 = "faculty.jsp#f-courses";
                                     }
-                                
+
                                 %>
                                 <a  href="<%=url2%>">
-                                <button  type="button" class="btn btn-warning btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal"  <%if (count2 > 0) {%> disabled <%}%> >+ Add Questions</button> 
+                                    <button  type="button" class="btn btn-warning btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal"  <%if (count2 > 0) {%> disabled <%}%> >+ Add Questions</button> 
                                 </a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <%  String url3 = "addProject.jsp?cid=" + rs.getString("c_id"); 
-                                    if(!project.equals("0")){
+                                <%  String url3 = "addProject.jsp?cid=" + rs.getString("c_id");
+                                    if (!project.equals("0")) {
                                         url3 = "faculty.jsp#f-courses";
                                     }
-                                
+
                                 %>
                                 <a  href="<%=url3%>">
                                     <button  type="button" class="btn btn-success btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal"  <%if (!project.equals("0")) {%> disabled <%}%> >+ Add Projects</button> 
@@ -354,7 +358,6 @@
                     nom = $('#noOFModules').val();
                     window.location.replace("addModules.jsp?nom=" + nom);
                 });
-
 
             </script>
 
@@ -411,23 +414,47 @@
                 <table class="table table-bordered table-striped mb-0">
                     <thead>
                         <tr>
-                            <th scope="col">Student ID</th>
+
                             <th scope="col">Student Name</th>
                             <th scope="col">Course Name</th>
-                            <th scope="col">Assignments</th>
+                            <th scope="col">Project</th>
+                            <th scope="col">Exam Marks</th>
+
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            Connection con = ConnectionProvider.getConnection();
+                            Statement stm = con.createStatement();
+                            String query = "select * from course where f_id=" + fac.getFacid();
+                            ResultSet rs = stm.executeQuery(query);
+                            while (rs.next()) {
+//                                out.println(rs.getString("c_id"));
+                                query = "select * from std_progress where c_id=" + rs.getInt("c_id") + " and cert_id=" + 0 + " and (pro_file != '" + 0 + "' and exam_marks!=" + 0 + ")";
+                                stm = con.createStatement();
+                                ResultSet rs2 = stm.executeQuery(query);
+                                while (rs2.next()) {
+                                    StudentDao dao = new StudentDao(ConnectionProvider.getConnection());
+                                    student st = dao.getStudentById(rs2.getInt("s_id"));
+                        %>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Java</td>
-                            <td><a href="#" target="_blank">snakeGame.pdf</a></td>
-                            <td><button type="button" class="btn btn-success btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">&check; Issue Certificate</button>
+                            <th scope="row"> <%= st.getName()%> </th>
+                            <td><%= rs.getString("c_name")%></td>
+
+                            <td><a href="src/std-project/<%= rs2.getString("pro_file")%>" target="_blank"> <%= rs2.getString("pro_file")%> </a></td>
+                            <td> <%= rs2.getString("exam_marks")%>  </td>
+                            <td>
+                                <a href="issueCertificate?s_id=<%=rs2.getString("s_id")%>">
+                                    <button type="button" class="btn btn-success btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">&check; Issue Certificate</button>
+                                </a>
                                 <!--<button type="button" class="btn btn-danger btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal" data-bs-target="#moduleReport">! Issue Report</button>-->
                             </td>
                         </tr>
+                        <%
+                                }
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>

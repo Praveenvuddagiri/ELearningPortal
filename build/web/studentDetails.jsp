@@ -4,6 +4,8 @@
     Author     : praveen vuddagiri
 --%>
 
+<%@page import="com.learning.entities.course"%>
+<%@page import="com.learning.dao.CourseDao"%>
 <%@page import="com.learning.entities.student"%>
 <%@page import="com.learning.helper.ConnectionProvider"%>
 <%@page import="java.sql.ResultSet"%>
@@ -42,27 +44,27 @@
         </nav>
 
         <%
-            student st=new student();
+            student st = new student();
             try {
 
                 Connection con = ConnectionProvider.getConnection();
                 String query = "select * from student where id=" + request.getParameter("s_id");
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(query);
-                while(rs.next()){
+                while (rs.next()) {
                     st.setId(rs.getInt("id"));
-                    st.setName(rs.getString("name"));                    
+                    st.setName(rs.getString("name"));
                     st.setEmail(rs.getString("email"));
                     st.setPhone(rs.getString("phone"));
                     st.setDob(rs.getString("dob"));
                     st.setGen(rs.getString("gender"));
                     st.setClg(rs.getString("college"));
-                    st.setImg(rs.getString("img"));                    
+                    st.setImg(rs.getString("img"));
                     st.setAdd(rs.getString("address"));
 
                 }
-                
-            }catch(Exception e){
+
+            } catch (Exception e) {
                 out.println(e);
             }
 
@@ -75,9 +77,9 @@
                 <div class="col-lg-4">
                     <div class="card mb-4 shadow bg-white rounded">
                         <div class="card-body text-center">
-                            <img src="src/stud-img/<%= st.getImg() %>"
+                            <img src="src/stud-img/<%= st.getImg()%>"
                                  alt="avatar" class="rounded-circle img-fluid" style="width: 109.5px;">
-                            <h5 class="my-3"> <%= st.getName() %> </h5>
+                            <h5 class="my-3"> <%= st.getName()%> </h5>
                         </div>
                     </div>
                     <div class="card mb-4 mb-lg-0 shadow bg-white rounded">
@@ -86,9 +88,19 @@
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                     <h5 class="mb-0">Courses Enrolled</h5>
                                 </li>
+                                <%
+                                    Connection con = ConnectionProvider.getConnection();
+                                    Statement stm = con.createStatement();
+                                    String query = "select * from std_progress where s_id=" + st.getId();
+                                    ResultSet rs = stm.executeQuery(query);
+                                    while (rs.next()) {
+                                        CourseDao dao = new CourseDao(ConnectionProvider.getConnection());
+                                        course co = dao.getCourseById(rs.getInt("c_id"));
+                                %>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <p class="mb-0">Java</p>
+                                    <p class="mb-0"><%= co.getC_name()%></p>
                                 </li>
+                                <%}%>
                             </ul>
                         </div>
                     </div>
@@ -106,7 +118,7 @@
                                     <p class="mb-0">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><%= st.getName() %></p>
+                                    <p class="text-muted mb-0"><%= st.getName()%></p>
                                 </div>
                             </div>
                             <hr>
@@ -115,7 +127,7 @@
                                     <p class="mb-0">Email</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><%= st.getEmail() %></p>
+                                    <p class="text-muted mb-0"><%= st.getEmail()%></p>
                                 </div>
                             </div>
                             <hr>
@@ -124,7 +136,7 @@
                                     <p class="mb-0">Phone</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">  <%= st.getPhone() %></p>
+                                    <p class="text-muted mb-0">  <%= st.getPhone()%></p>
                                 </div>
                             </div>
                             <hr>
@@ -133,7 +145,7 @@
                                     <p class="mb-0">Address</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><%= st.getAdd() %></p>
+                                    <p class="text-muted mb-0"><%= st.getAdd()%></p>
                                 </div>
                             </div>
                             <hr>
@@ -142,7 +154,7 @@
                                     <p class="mb-0">Gender</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><%= st.getGen() %></p>
+                                    <p class="text-muted mb-0"><%= st.getGen()%></p>
                                 </div>
                             </div>
                             <hr>
@@ -151,7 +163,7 @@
                                     <p class="mb-0">DOB</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><%= st.getDob() %></p>
+                                    <p class="text-muted mb-0"><%= st.getDob()%></p>
                                 </div>
                             </div>
                             <hr>
@@ -160,7 +172,7 @@
                                     <p class="mb-0">College Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><%= st.getClg() %></p>
+                                    <p class="text-muted mb-0"><%= st.getClg()%></p>
                                 </div>
                             </div>
                         </div>

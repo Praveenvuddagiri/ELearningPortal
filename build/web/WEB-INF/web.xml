@@ -72,6 +72,18 @@
         <servlet-name>addProject</servlet-name>
         <servlet-class>com.learning.servlets.addProject</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>studentProjectSubmit</servlet-name>
+        <servlet-class>com.learning.servlets.studentProjectSubmit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>submitResult</servlet-name>
+        <servlet-class>com.learning.servlets.submitResult</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>purchaseCourse</servlet-name>
+        <servlet-class>com.learning.servlets.purchaseCourse</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>adminLogin</servlet-name>
         <url-pattern>/adminLogin</url-pattern>
@@ -143,6 +155,18 @@
     <servlet-mapping>
         <servlet-name>addProject</servlet-name>
         <url-pattern>/addProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>studentProjectSubmit</servlet-name>
+        <url-pattern>/studentProjectSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>submitResult</servlet-name>
+        <url-pattern>/submitResult</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>purchaseCourse</servlet-name>
+        <url-pattern>/purchaseCourse</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
