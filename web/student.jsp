@@ -251,7 +251,7 @@
                                 CourseDao dao = new CourseDao(ConnectionProvider.getConnection());
                                 course co = dao.getCourseById(rs.getInt("c_id"));
                         %>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="col-lg-3 col-md-4 wow fadeInUp" data-wow-delay="0.3s">
 
                             <div class="course-item bg-light">
                                 <div class="position-relative overflow-hidden">
@@ -278,7 +278,7 @@
                 <table class="table table-bordered table-striped mb-0">
                     <thead>
                         <tr>
-                            <th scope="col">Course ID</th>
+                            <th scope="col">Certificate Id</th>
                             <th scope="col">Course Name</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Date of Issue</th>
@@ -287,15 +287,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            
+                            query = "select * from std_progress where s_id=" + st.getId() + "and cert_id!=" + 0;
+                            rs = stm.executeQuery(query);
+                            while (rs.next()) {
+                                CourseDao dao = new CourseDao(ConnectionProvider.getConnection());
+                                course co = dao.getCourseById(rs.getInt("c_id"));
+                                stm = con.createStatement();
+                                query = "select * from certificates where cert_id="+rs.getString("cert_id");
+                                ResultSet rs2 = stm.executeQuery(query);
+                                while(rs2.next()){
+                                
+                            
+                        %>
                         <tr>
-                            <td>PJ12</td>
-                            <td>Java</td>
-                            <td>2 Months</td>
-                            <td>21-02-2022</td>
-                            <td>97</td>
-                            <td><button type="button" class="btn btn-primary btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">View Certificate</button></td>
+                            <td> <%= rs.getString("cert_id") %> </td>
+                            <td> <%= co.getC_name() %> </td>
+                            <td> <%= co.getC_dur() %> Months</td>
+                            <td> <%= rs2.getString("date_of_issue") %> </td>
+                            <td> <%= rs.getString("exam_marks") %> </td>
+                            <td><a href="certificateDisplay.jsp?c_id=<%= co.getC_id() %>&s_id=<%= rs.getString("s_id")%>"><button type="button" class="btn btn-primary btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">View Certificate</button></a></td>
                         </tr>
-
+                        <%}}%>
                     </tbody>
                 </table>
             </div>

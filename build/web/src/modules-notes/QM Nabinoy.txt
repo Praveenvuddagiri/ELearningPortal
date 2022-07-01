@@ -1,0 +1,141 @@
+--------------------------------------html-----------------------------------------------
+
+typing animation===========================
+    <section class=" recomandation mt-5">
+        <div class="flex-container text-center ">
+            <h5>
+                <i class="fa-solid fa-star"></i> Recommended By
+                <span id="str"></span><span class="cursor"></span>
+            </h5>
+
+        </div>
+    </section>
+
+============================================
+
+clients=====================================
+
+<h2 class="mt-5 text-center">Our Awesome Clients</h2>
+        <p class="text-center">We have had a amazing journey with our Clients that brings us to <br>where we are stands today.</p>
+<div class="carousel-wrap">
+            <div class="owl-carousel">
+              <div class="item"><img src="assets/images/clients/beyfikr.png" style="margin-top: 20px;"></div>
+              <div class="item"><img src="assets/images/clients/brait.webp"></div>
+              <div class="item"><img src="assets/images/clients/detoxitour.webp" style="margin-top: 8px;"></div>
+              <div class="item"><img src="assets/images/clients/dhs.webp" style="margin-top: 5px;"></div>
+              <div class="item"><img src="assets/images/clients/fd.png" style="margin-top: 5px;"></div>
+              <div class="item"><img src="assets/images/clients/GodirectdealLogo.png"></div>
+              <div class="item"><img src="assets/images/clients/ipt.webp" style="margin-top: 30px; transform: scale(1.29);"></div>
+              <div class="item"><img src="assets/images/clients/police.webp" style="height: 100px;"></div>
+              <div class="item"><img src="assets/images/clients/sm1_.png" style="height: 100px; width: 80px;"></div>
+              <div class="item"><img src="assets/images/clients/vhotel.png" style="height: 100px; width: 80px;"></div>
+            </div>
+          </div>
+
+============================================
+
+svg===============================
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 47 1440 270">
+
+==================================
+
+--------------------------------------css------------------------------------------------
+
+typing animation css==============================
+
+.cursor {
+            display: inline-block;
+            height: 20px;
+            width: 2px;
+            background: rgb(35, 35, 35);
+            vertical-align: middle;
+            animation: 1s blink linear infinite;
+          }
+          @keyframes blink {
+            0%,49% {
+              opacity: 0;
+            }
+            50%,100% {
+              opacity: 1;
+            }
+          }
+
+===================================================
+
+clients css=========================================
+
+.clients p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            color: rgb(31, 29, 29);
+            text-align: justify;
+        }
+        
+        .clients .item {
+            height: 100px;
+            width: 100px;
+        }
+        
+        /* price plances css */
+        .carousel-wrap {
+            margin: 90px auto;
+            padding: 0 5%;
+            width: 80%;
+            position: relative;
+          }
+          
+          /* fix blank or flashing items on carousel */
+          .owl-carousel .item {
+            position: relative;
+            z-index: 100; 
+            -webkit-backface-visibility: hidden; 
+          }
+          
+          /* end fix */
+          .owl-nav > div {
+            margin-top: -26px;
+            position: absolute;
+            top: 50%;
+            color: #cdcbcd;
+          }
+          
+          .owl-nav i {
+            font-size: 52px;
+          }
+          
+          .owl-nav .owl-prev {
+            left: -30px;
+          }
+          
+          .owl-nav .owl-next {
+            right: -30px;
+          }
+
+=================================================================
+
+
+--------------------------------------js-------------------------------------------------
+
+client js=========================================================
+
+$('.owl-carousel').owlCarousel({
+  loop: true,
+  margin: 10,
+  autoplay: true,
+  autoplayTimeout:1000,
+  autoplayHoverPause: true,
+  responsive: {
+    0: {
+      items: 1
+    },
+    600: {
+      items: 3
+    },
+    1000: {
+      items: 5
+    }
+  }
+})
+
+====================================================================

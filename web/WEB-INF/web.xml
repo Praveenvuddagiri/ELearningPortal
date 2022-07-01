@@ -84,6 +84,10 @@
         <servlet-name>purchaseCourse</servlet-name>
         <servlet-class>com.learning.servlets.purchaseCourse</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>issueCertificate</servlet-name>
+        <servlet-class>com.learning.servlets.issueCertificate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>adminLogin</servlet-name>
         <url-pattern>/adminLogin</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>purchaseCourse</servlet-name>
         <url-pattern>/purchaseCourse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>issueCertificate</servlet-name>
+        <url-pattern>/issueCertificate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

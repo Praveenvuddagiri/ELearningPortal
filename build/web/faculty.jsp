@@ -445,7 +445,7 @@
                             <td><a href="src/std-project/<%= rs2.getString("pro_file")%>" target="_blank"> <%= rs2.getString("pro_file")%> </a></td>
                             <td> <%= rs2.getString("exam_marks")%>  </td>
                             <td>
-                                <a href="issueCertificate?s_id=<%=rs2.getString("s_id")%>">
+                                <a href="issueCertificate?s_id=<%=rs2.getString("s_id")%>&c_id=<%=rs.getString("c_id")%>">
                                     <button type="button" class="btn btn-success btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">&check; Issue Certificate</button>
                                 </a>
                                 <!--<button type="button" class="btn btn-danger btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;" data-bs-toggle="modal" data-bs-target="#moduleReport">! Issue Report</button>-->
