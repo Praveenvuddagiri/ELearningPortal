@@ -88,6 +88,10 @@
         <servlet-name>issueCertificate</servlet-name>
         <servlet-class>com.learning.servlets.issueCertificate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sendMail</servlet-name>
+        <servlet-class>com.learning.servlets.sendMail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>adminLogin</servlet-name>
         <url-pattern>/adminLogin</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>issueCertificate</servlet-name>
         <url-pattern>/issueCertificate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendMail</servlet-name>
+        <url-pattern>/sendMail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

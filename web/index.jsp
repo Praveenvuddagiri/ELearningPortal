@@ -160,7 +160,7 @@
                 </div>
                 <div id="fourth-section">
                     <center><h1 class="certificate" style="padding-top:5%; color:rgb(124, 124, 243);">Certificate</h1></center>
-                    <img align="right" src="src/certificate.jpg" alt="vector image" width="600" height="400" style="margin-right: 120px; margin-top:3%; box-shadow: 2px 2px 8px;" class="certificateimg">
+                    <img align="right" src="src/certificate.png" alt="vector image" width="600" height="400" style="margin-right: 120px; margin-top:3%; box-shadow: 2px 2px 8px;" class="certificateimg">
                     <div id="aboutcertificate">
                         <h3 style="color: rgb(0, 0, 0);">Certificate of Completion</h3>
                         <p>Training certificate will be given to each enrolled student on completing the required internship guidelines. There is no Fee or Charges for issuing internship certificate to students.

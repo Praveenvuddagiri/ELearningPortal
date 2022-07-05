@@ -29,11 +29,11 @@
 
     <body>
         <%
-            String c_name="";
+            String c_name = "";
             try {
 
                 Connection con = ConnectionProvider.getConnection();
-                String query = "select * from course where c_id = "+request.getParameter("c_id");
+                String query = "select * from course where c_id = " + request.getParameter("c_id");
                 Statement stm = con.createStatement();
                 ResultSet rs = stm.executeQuery(query);
                 while (rs.next()) {
@@ -112,6 +112,34 @@
                         </div>
                     </div>
 
+                </div>
+
+
+                <%
+                    String f_mail = "";
+                    try {
+
+                        Connection con = ConnectionProvider.getConnection();
+                        String query = "select f_id from course where c_id = " + request.getParameter("c_id");
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery(query);
+                        while (rs.next()) {
+                            query = "select * from faculty where f_id=" + rs.getString("f_id");
+                            stm = con.createStatement();
+                            ResultSet rs2 = stm.executeQuery(query);
+                            while (rs2.next()) {
+                                f_mail = rs2.getString("f_email");
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                %>
+                <div class="text-center text-primary mt-5">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=<%= f_mail %>" target="_blank" style="text-decoration: none;font-size:19px; color: black;">
+                        <p > For any doubts regarding course you can contact faculty through : <span><i><u> <%= f_mail %> </u></i></span></p></a>
                 </div>
             </div>
         </div>

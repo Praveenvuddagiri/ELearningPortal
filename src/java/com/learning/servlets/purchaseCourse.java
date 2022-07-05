@@ -64,9 +64,11 @@ public class purchaseCourse extends HttpServlet {
                 out.println(e);
                 e.printStackTrace();
             }
-            out.println("<a href='https://upier-pp.vercel.app/pay?vpa=vuddagiripraveen@oksbi&amount="+co.getC_price()+"' target='_blank'>PAY NOW</a>");
-            out.println("<form method='post' action='student.jsp#s-courses'");
-            out.println("<button type='submit'>Done Payment</button></form>");
+            
+            out.println("<body style='background-color: #81dcf3;display: flex;flex-direction:column;justify-content: center;align-items: center; height:100vh;'><a href='https://upier-pp.vercel.app/pay?vpa=vuddagiripraveen@oksbi&amount="+co.getC_price()+"' target='_blank'>"
+                    + "<button style='text-decoration:none;height: 30px;width:100px;margin-bottom: 40px;'>PAY NOW</button></a>");
+            out.println("<form method='post' action='student.jsp#s-courses'>");
+            out.println("<button type='submit' style='text-decoration:none;height: 30px;width:200px;margin-bottom: 40px;'>Done Payment</button></form></body>");
 //            response.sendRedirect("student.jsp#s-courses");
         }
     }

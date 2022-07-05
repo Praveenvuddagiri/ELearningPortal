@@ -62,7 +62,7 @@
         <%
             Connection con = ConnectionProvider.getConnection();
             Statement stm = con.createStatement();
-            String query = "select * from std_progress where s_id=" + request.getParameter("s_id") + "and cert_id!=" + 0;
+            String query = "select * from std_progress where s_id=" + request.getParameter("s_id") + "and cert_id!=" + 0 +" and c_id="+request.getParameter("c_id") ;
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
             

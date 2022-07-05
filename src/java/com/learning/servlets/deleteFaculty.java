@@ -1,4 +1,3 @@
-
 package com.learning.servlets;
 
 import com.learning.dao.FacultyDao;
@@ -6,24 +5,34 @@ import com.learning.entities.faculty;
 import com.learning.helper.ConnectionProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class deleteFaculty extends HttpServlet {
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-          int id = Integer.parseInt(request.getParameter("id"));
-          FacultyDao dao = new FacultyDao(ConnectionProvider.getConnection());
-          boolean status=dao.deleteFaculty(id);
-          response.sendRedirect("admin.jsp#a-faculties"); 
-           
+            try {
+                String query = "update course set f_id = "+request.getParameter("faculty")+" where f_id="+request.getParameter("f_id");
+                Connection con = ConnectionProvider.getConnection();
+                Statement stm = con.createStatement();
+                ResultSet rs = stm.executeQuery(query);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            int id = Integer.parseInt(request.getParameter("f_id"));
+            FacultyDao dao = new FacultyDao(ConnectionProvider.getConnection());
+            boolean status = dao.deleteFaculty(id);
+            response.sendRedirect("admin.jsp#a-faculties");
+
         }
     }
 

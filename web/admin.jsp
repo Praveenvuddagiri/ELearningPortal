@@ -314,6 +314,9 @@
                                         cname += rs2.getString("c_name");
                                         cname += ", ";
                                     }
+                                    if(cname==""){
+                                        cname = "nulll,";
+                                    }
                                     cname = cname.substring(0, cname.length() - 2);
                         %>
                         <tr>
@@ -322,7 +325,7 @@
                             <td><%=cname%></td>                      
                             <td><%=rs.getString("f_email")%></td>
                             <td>
-                                <%String url = "deleteFaculty?id=" + rs.getString("f_id");%>   
+                                <%String url = "transferCourses.jsp?f_id=" + rs.getString("f_id");%>   
                                 <a href="<%=url%>"> 
                                     <button type="button" class="btn btn-danger btn-rounded" style="font-size: 12px; padding: 2px 6px 2px 6px;">Delete</button>
                                 </a>
@@ -368,6 +371,7 @@
                             Statement stm = con.createStatement();
                             ResultSet rs = stm.executeQuery(query);
                             while (rs.next()) {
+                                
                                 StudentDao daos = new StudentDao(ConnectionProvider.getConnection());
                                 student st = daos.getStudentById(rs.getInt("s_id"));
                                 
