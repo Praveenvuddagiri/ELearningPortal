@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Student Name</label>
-                            <input type="text" name="name" value="<%= st.getName()%>" class="form-control" required>
+                            <input type="text" name="name" value="<%= st.getName()%>" class="form-control" ondrop="return false;" onpaste="return false; " onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32" required>
                         </div>
 
                     </div>

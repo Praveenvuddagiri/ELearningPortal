@@ -35,13 +35,13 @@
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Course Name</label>
-                            <input name="cname" type="text" class="form-control" required>
+                            <input name="cname" type="text" class="form-control" ondrop="return false;" onpaste="return false; " onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32" required>
                         </div>
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Course Price</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">₹</span>
-                                <input name="cprice" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input name="cprice" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" onpaste="return false; " onkeypress="return event.charCode>=48 && event.charCode<=57" required>
                                 <span class="input-group-text">.00</span>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Duration(months)</label>
-                            <input name="cdur" type="text" class="form-control" required>
+                            <input name="cdur" type="text" class="form-control" onpaste="return false; " onkeypress="return event.charCode>=48 && event.charCode<=57" required>
                         </div>
 
                         <div class="col-md-6 mt-md-0 mt-3">

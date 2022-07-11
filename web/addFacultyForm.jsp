@@ -29,11 +29,11 @@
             <div class="row">
                 <div class="col-md-6 mt-md-0 mt-3">
                     <label>Faculty Name</label>
-                    <input type="text" class="form-control" name="name" required>
+                    <input type="text" class="form-control" name="name" ondrop="return false;" onpaste="return false; " onkeypress="return (event.charCode>=65 && event.charCode<=90) || (event.charCode>=97 && event.charCode<=122) || event.charCode==32" required>
                 </div>
                 <div class="col-md-6 mt-md-0 mt-3">
                     <label>Phone Number</label>
-                    <input type="tel" class="form-control" name="phno" required>
+                    <input type="tel" class="form-control" name="phno" maxlength="10" title="Must enter only numbers and cannot enter more than 10digits."  placeholder="Enter your mobile number" onpaste="return false; " onkeypress="return event.charCode>=48 && event.charCode<=57" required>
                 </div>
             </div>
             <div class="row">
