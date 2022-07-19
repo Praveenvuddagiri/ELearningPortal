@@ -47,7 +47,7 @@
                         <a href="#a-courses" class="nav_link"> <i class='bx bx-book-content nav_icon'></i> <span class="nav_name" id="allcourses">All Courses</span> </a> 
                         <a href="#a-students" class="nav_link" > <i class='bx bxs-user-detail nav_icon'></i> <span class="nav_name" id="allstudents">All Students</span> </a> 
                         <a href="#a-faculties" type="submit" class="nav_link" > <i class='bx bx-user-voice nav_icon'></i> <span class="nav_name" id="allstudents">All Faculties</span> </a>
-                        <a href="#a-transactions" class="nav_link"> <i class="fa-solid fa-money-check-dollar"></i> <span class="nav_name" id="assignments">Assignments</span> </a>  
+                        <a href="#a-transactions" class="nav_link"> <i class="fa-solid fa-money-check-dollar"></i> <span class="nav_name" id="assignments">Transactions</span> </a>  
                     </div>
                 </div> <a href="adminLogout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sign Out</span> </a>
             </nav>
@@ -169,6 +169,55 @@
                 </div>
             </div>
 
+            <div class="row" >
+                <div class="col-md-12">
+                    <div class="card mb-4 mb-md-0 shadow bg-white rounded">
+                        <div class="card-body" >
+                            <p class="mb-0 text-center"><span class="text-primary font-italic me-1" style="font-size: 25px">Student's Enrolled in Each course</span> 
+                            </p>
+                            <div class="row" style="overflow-y: scroll; height: 350px" >
+                                <%
+                                    int present = 0;
+                                    int per = 0;
+                                    try {
+
+                                        Connection con = ConnectionProvider.getConnection();
+                                        String query = "select * from course";
+                                        Statement stm = con.createStatement();
+                                        ResultSet rs = stm.executeQuery(query);
+                                        while (rs.next()) {
+                                            query = "select count(*) from std_progress where c_id=" + rs.getString("c_id");
+                                            stm = con.createStatement();
+                                            ResultSet rs2 = stm.executeQuery(query);
+                                            while (rs2.next()) {
+                                                present = rs2.getInt(1);
+                                                per = (int) ((present / Double.parseDouble(noSt)) * 100);
+                                %>
+
+                                <div class="col-md-5" style=" margin-left: 30%;">
+                                    <p class="mb-1 mt-5" style="font-size: 18px;"> <%= rs.getString("c_name")%><span> <i>(<%=per%>)%<i/> </span> </p> 
+                                    <div class="progress rounded" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=per%>%" aria-valuenow="80"
+                                             aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <%
+                                            }
+                                        }
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        out.println(e);
+                                    }
+
+                                %>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         <div class="height-100 " id="a-courses">
@@ -187,8 +236,7 @@
                     </thead>
                     <tbody>
                         <!--get all courses using jsp start-->
-                        <%
-                            try {
+                        <%                                try {
 
                                 Connection con = ConnectionProvider.getConnection();
                                 String query = "select * from course";
@@ -314,7 +362,7 @@
                                         cname += rs2.getString("c_name");
                                         cname += ", ";
                                     }
-                                    if(cname==""){
+                                    if (cname == "") {
                                         cname = "nulll,";
                                     }
                                     cname = cname.substring(0, cname.length() - 2);
@@ -371,13 +419,13 @@
                             Statement stm = con.createStatement();
                             ResultSet rs = stm.executeQuery(query);
                             while (rs.next()) {
-                                
+
                                 StudentDao daos = new StudentDao(ConnectionProvider.getConnection());
                                 student st = daos.getStudentById(rs.getInt("s_id"));
-                                
+
                                 CourseDao daoc = new CourseDao(ConnectionProvider.getConnection());
                                 course co = daoc.getCourseById(rs.getInt("c_id"));
-                                
+
                                 query = "select * from transactions where trans_id='" + rs.getString("trans_id") + "'";
                                 stm = con.createStatement();
                                 ResultSet rs2 = stm.executeQuery(query);
